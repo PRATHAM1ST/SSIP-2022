@@ -7,6 +7,12 @@ const AdminRegister = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // fetch()
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   };
 
   return (

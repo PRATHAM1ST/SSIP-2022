@@ -7,6 +7,12 @@ const FeedbackForm = () => {
     const Que = [{type: 'option', value: ['1', '2', '3']}]
     function handleSubmit(event){
         event.preventDefault();
+      //   fetch()
+      // .then((res) => res.json())
+      // .then((data) => console.log(data))
+      // .catch((err) => {
+      //   throw err;
+      // });
     }
   return (
     <>

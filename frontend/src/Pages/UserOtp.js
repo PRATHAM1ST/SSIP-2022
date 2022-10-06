@@ -8,19 +8,37 @@ const UserOtp = () => {
   const handleMobileNo = (event) => {
     event.preventDefault();
     setGotMobileNo(true);
+    // fetch("")
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   };
 
   const handleChangeMobileNo = (event) => {
     event.preventDefault();
-    setMobile(false);
+    setGotMobileNo(false);
   };
 
   const handleResendOTP = (event) => {
     event.preventDefault();
+    // fetch()
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   };
 
   const handleSubmitOTP = (event) => {
     event.preventDefault();
+    // fetch()
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => {
+    //     throw err;
+    //   });
   };
 
   return (
