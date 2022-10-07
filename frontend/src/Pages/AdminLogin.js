@@ -4,9 +4,17 @@ const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log({username: username, password: password});
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // fetch()
+    // fetch('localhost:3000/login/', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     username: username,
+    //     password: password,
+    //   })
+    // })
     //   .then((res) => res.json())
     //   .then((data) => console.log(data))
     //   .catch((err) => {
@@ -24,6 +32,7 @@ const AdminLogin = () => {
           <input
             id="username"
             className="form-control"
+            
             type="text"
             name="username"
             placeholder="Username"

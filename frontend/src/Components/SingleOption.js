@@ -1,16 +1,18 @@
-const SingleOption = ({ question, values }) => {
+const SingleOption = ({ question, values, id }) => {
   return (
-    <div className="mb-3">
-      <label className="form-label">{question}</label>
+    <div className="">
+      <div className="question">
+        <span className="question-number">{id}</span>{question}
+      </div>
       {values.map((value) => (
-        <div className="form-check" key={value}>
+        <div className="options" key={value}>
           <input
-            className="form-check-input"
+            className="checkbox"
             type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
+            name={id}
+            id={id}
           />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">
+          <label className="" htmlFor={id}>
             {value}
           </label>
         </div>

@@ -1,0 +1,38 @@
+.police-staion{
+    text-align: center;
+}
+
+.address{
+    width: 50%;
+    margin: auto;
+}
+
+.feedback-form > div, .police-staion{
+    margin: 2em 0;
+    padding: 2em 0;
+    box-shadow: 0 2px 0 -1px var(--label-clr);
+}
+
+.feedback-form{
+    margin-bottom: 3em;
+}
+
+.question{
+    margin-bottom: 1em;
+}
+
+select, textarea{
+    width: 100%;
+    padding: 1em;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+input[type="checkbox"], input[type="radio"]{
+    height: 1.25em;
+    width: 1.25em;
+}
+
+.char-count{
+    font-size: 10px;
+}

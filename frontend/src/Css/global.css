@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.App{
+    width: var(--grid-width);
+    margin: auto;
+    margin-top: 3vmin;
+}
+
+.title{
+    font-weight: 800;
+    font-size: 32px;
+}
+
+.label{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--label-clr);
+}
+
+.input{
+    width: calc(100% - 4em - 4px);
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.button{
+    cursor: pointer;
+    width: 100%;
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 800;
+    background-color: var(--primary-clr);
+}
+
+a{
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.question , .question > *{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.question-number{
+    margin-right: 1em;
+}
+
+.question-number::after{
+    content: '.';
+}
+
+.checkbox{
+    margin: 0 1em;
+}
+
+.options{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}

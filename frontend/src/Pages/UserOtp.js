@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../Pages Css/UserOtp.css";
 
 const UserOtp = () => {
   const [gotMobileNo, setGotMobileNo] = useState(false);
@@ -8,12 +9,12 @@ const UserOtp = () => {
   const handleMobileNo = (event) => {
     event.preventDefault();
     setGotMobileNo(true);
-    // fetch("")
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+    fetch("http://127.0.0.1:8000")
+      .then((res) => {res.json(); console.log(res);})
+      .then((data) => console.log(data))
+      .catch((err) => {
+        throw err;
+      });
   };
 
   const handleChangeMobileNo = (event) => {
@@ -43,72 +44,70 @@ const UserOtp = () => {
 
   return (
     <>
-      <form className="m-5">
+      <form id="OTPForm">
         {!gotMobileNo && (
-          <div className="mb-3">
-            <label htmlFor="mob-no" className="form-label">
-              Enter Mobile No.
-            </label>
+          <div className="container">
+            <img className="police-cap-img" src="./assets/police-cap.png" />
+            <div className="title">Enter Mobile Number</div>
+            <div className="label-input">
+              <label htmlFor="mob-no" className="label">
+                Enter Aadhaar or Non-Aadhaar Mobile No.
+              </label>
+              <input
+                id="mob-no"
+                className="input"
+                type="number"
+                name="mob-no"
+                placeholder="Mobile No"
+                maxLength="10"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                required
+              />
+            </div>
             <input
-              id="mob-no"
-              className="form-control"
-              type="number"
-              name="mob-no"
-              placeholder="Mobile No"
-              maxLength="10"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              required
+              className="button"
+              type="submit"
+              value="Get Otp"
+              onClick={handleMobileNo}
             />
           </div>
         )}
 
         {gotMobileNo && (
-          <div className="mb-3">
-            <label htmlFor="otp" className="form-label">
-              Enter OTP
-            </label>
+          <div className="container">
+            <img className="police-cap-img" src="./assets/police-cap.png" />
+            <div className="title">Enter OTP</div>
+            <div className="label-input">
+              <label htmlFor="otp" className="label">
+                Enter Otp sent on mobile no. 8200357641
+              </label>
+              <input
+                id="otp"
+                className="input"
+                type="number"
+                name="otp"
+                placeholder="Enter OTP"
+                maxLength="6"
+                value={OTP}
+                onChange={(e) => setOTP(e.target.value)}
+                required
+              />
+            </div>
             <input
-              id="otp"
-              className="form-control"
-              type="number"
-              name="otp"
-              placeholder="Enter OTP"
-              maxLength="6"
-              value={OTP}
-              onChange={(e) => setOTP(e.target.value)}
-              required
-            />
-          </div>
-        )}
-        {!gotMobileNo && (
-          <input
-            className="btn btn-primary"
-            type="submit"
-            value="Get Otp"
-            onClick={handleMobileNo}
-          />
-        )}
-        {gotMobileNo && (
-          <div>
-            <input
-              className="btn btn-primary"
+              className="button"
               type="submit"
               value="Submit OTP"
               onClick={handleSubmitOTP}
             />
-            <input
-              className="btn btn-link"
-              type="submit"
-              value="Resend OTP"
-              onClick={handleResendOTP}
-            />
-            <input
-              className="btn btn-link"
-              type="submit"
-              value="Change Mobile No."
-              onClick={handleChangeMobileNo}
-            />
+            <div className="OTP-link">
+              <a className="OTP-link" onClick={handleResendOTP}>
+                Resend OTP
+              </a>
+              <a className="OTP-link" onClick={handleChangeMobileNo}>
+                Change Mobile No.
+              </a>
+            </div>
           </div>
         )}
       </form>

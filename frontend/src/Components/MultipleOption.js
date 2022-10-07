@@ -1,14 +1,16 @@
-const MultipleOption = ({ question, values }) => {
+const MultipleOption = ({ question, values, id }) => {
   return (
     <div className="mb-3">
-      <label className="form-label">{question}</label>
+      <div className="question">
+        <span className="question-number">{id}</span>{question}
+      </div>
       {values.map((value) => (
-        <div className="form-check" key={value}>
+        <div className="options" key={value}>
           <input
-            className="form-check-input"
+            className="checkbox"
             type="checkbox"
           />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">
+          <label className="" htmlFor="flexRadioDefault1">
             {value}
           </label>
         </div>

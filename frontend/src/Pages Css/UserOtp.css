@@ -1,0 +1,37 @@
+#OTPForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.police-cap-img{
+    width: 30vmin;
+    margin: auto;
+}
+
+input[type="number"]{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.label-input{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.OTP-link{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3em;
+}
