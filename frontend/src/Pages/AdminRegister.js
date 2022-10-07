@@ -1,7 +1,8 @@
 import { useState } from "react";
+import "../Pages Css/LoginRegForm.css";
 
 const AdminRegister = () => {
-  const [name, setName] = useState("");
+  const [PIN, setPIN] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
 
@@ -17,30 +18,32 @@ const AdminRegister = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="m-5">
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
+      <form onSubmit={handleSubmit} id="LoginRegForm" className="container">
+        <div className="title">Admin Register</div>
+
+        <div className="">
+          <label htmlFor="PIN" className="label">
+            PIN: Police Identification Number
           </label>
           <input
-            id="name"
-            className="form-control"
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="PIN"
+            className="input"
+            type="number"
+            name="PIN"
+            placeholder="PIN Number"
+            value={PIN}
+            onChange={(e) => setPIN(e.target.value)}
             required
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="label">
             Password
           </label>
           <input
             id="password"
-            className="form-control"
-            type="password"
+            className="input"
+            type="text"
             name="password"
             placeholder="Password"
             value={password}
@@ -49,13 +52,13 @@ const AdminRegister = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="re-password" className="form-label">
+          <label htmlFor="re-password" className="label">
             Re-Password
           </label>
           <input
             id="re-password"
-            className="form-control"
-            type="re-password"
+            className="input"
+            type="password"
             name="re-password"
             placeholder="Re-Password"
             value={rePassword}
@@ -63,7 +66,7 @@ const AdminRegister = () => {
             required
           />
         </div>
-        <input className="btn btn-primary" type="submit" value="Login" />
+        <input className="button" type="submit" value="Register" />
       </form>
     </>
   );

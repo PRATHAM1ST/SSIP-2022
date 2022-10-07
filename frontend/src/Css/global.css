@@ -76,3 +76,11 @@ input[type=number] {
     /* justify-content: center; */
     align-items: center;
 }
+
+.fixedCenter{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+}

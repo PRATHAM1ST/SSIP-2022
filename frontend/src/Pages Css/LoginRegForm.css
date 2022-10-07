@@ -1,0 +1,16 @@
+#LoginRegForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+}
+
+#LoginRegForm > .title{
+    text-align: center;
+}
+
+#LoginRegForm > div > input[type="number"]{
+    font-weight: 400;
+    font-size: 1em;
+}

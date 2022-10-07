@@ -1,17 +1,16 @@
 import { useState } from "react";
+import "../Pages Css/LoginRegForm.css";
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  console.log({username: username, password: password});
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // fetch('localhost:3000/login/', {
     //   method: 'POST',
     //   body: JSON.stringify({
-    //     username: username,
+    //     email: email,
     //     password: password,
     //   })
     // })
@@ -24,30 +23,30 @@ const AdminLogin = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="m-5">
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
+      <form onSubmit={handleSubmit} id="LoginRegForm" className="container">
+        <div className="title">Admin Login</div>
+        <div className="">
+          <label htmlFor="email" className="label">
+            Email
           </label>
           <input
-            id="username"
-            className="form-control"
-            
+            id="email"
+            className="input"
             type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+        <div className="">
+          <label htmlFor="password" className="label">
             Password
           </label>
           <input
             id="password"
-            className="form-control"
+            className="input"
             type="password"
             name="password"
             placeholder="Password"
@@ -56,7 +55,11 @@ const AdminLogin = () => {
             required
           />
         </div>
-        <input className="btn btn-primary" type="submit" value="Login" />
+        <button className="g-recaptcha button" 
+        data-sitekey="6LclcGMiAAAAACcMErD4E5YdkngN-QSSHLSfS9Jr" 
+        data-callback='onSubmit' 
+        data-action='submit'
+        type="submit">Login</button>
       </form>
     </>
   );
