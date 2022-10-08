@@ -1,0 +1,17 @@
+.download-links{
+    display: flex;
+    gap: 3em;
+}
+
+.download-links > a{
+    color: black;
+    text-decoration: underline;
+}
+
+canvas{
+    margin: auto;
+}
+
+.title{
+    text-align: center !important;
+}

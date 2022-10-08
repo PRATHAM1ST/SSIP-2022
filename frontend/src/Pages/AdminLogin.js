@@ -7,8 +7,11 @@ const AdminLogin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target);
-    fetch('localhost:3001/admin-login/', {
+    fetch('http://localhost:3001/admin-login', {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -16,7 +19,11 @@ const AdminLogin = () => {
       })
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if(data.length > 0){
+          window.location.replace("/dashboard");
+        }
+      })
       .catch((err) => {
         throw err;
       });
@@ -56,12 +63,13 @@ const AdminLogin = () => {
             required
           />
         </div>
-        <button className="g-recaptcha button" 
+        <button className="button" type="submit">Login</button>
+        {/* <button className="g-recaptcha button" 
         data-sitekey="6LclcGMiAAAAACcMErD4E5YdkngN-QSSHLSfS9Jr" 
         data-callback='onSubmit' 
         data-action='submit'
         type="submit">
-          Login</button>
+          Login</button> */}
       </form>
     </>
   );

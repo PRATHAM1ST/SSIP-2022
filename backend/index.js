@@ -47,6 +47,7 @@ app.post('/mobile', (req, res) => {
     if((""+ mobile).length === 10){
       let generatedOTP = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false })
       saveOTP(generatedOTP);
+      console.log(generatedOTP);
       res.send({OTP: generatedOTP});
     }
     else{
@@ -66,7 +67,6 @@ app.post('/check-otp', (req, res) => {
   let err; 
   try{
     otpReceived = parseInt(otpReceived);
-    console.log(otpReceived, otp, otpReceived == otp, (""+ otpReceived).length === 6);
     if((""+ otpReceived).length === 6 && otpReceived ==  otp){
       res.send(true);
     }
@@ -83,7 +83,18 @@ app.post('/check-otp', (req, res) => {
 
 //login check admin
 app.post('/admin-login', (req, res) => {
-  let sql = `SELECT * FROM officer WHERE email = ${req.body.email} AND password = ${sha512(req.body.password)} AND admin = 1`;
+  let sql = `SELECT * FROM officer WHERE officer_email = '${req.body.email}' AND officer_password = '${req.body.password}' AND admin = 1`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+})
+
+//get all station
+app.get('/getStation', (req, res)=>{
+  let sql = `SELECT station_name FROM station `;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;

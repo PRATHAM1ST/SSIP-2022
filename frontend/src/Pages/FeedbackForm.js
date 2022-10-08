@@ -2,8 +2,7 @@ import DropDown from "../Components/DropDown";
 import MultipleOption from "../Components/MultipleOption";
 import SingleOption from "../Components/SingleOption";
 import TextArea from "../Components/TextArea";
-
-import '../Pages Css/FeedbackForm.css';
+import '../Pages Css/DashboardFeedback.css';
 
 const FeedbackForm = ({title, address}) => {
     const Que = [{type: 'option', value: ['1', '2', '3']}]
