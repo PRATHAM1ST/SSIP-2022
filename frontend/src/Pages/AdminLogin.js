@@ -7,18 +7,19 @@ const AdminLogin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // fetch('localhost:3000/login/', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: email,
-    //     password: password,
-    //   })
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+    console.log(event.target);
+    fetch('localhost:3001/admin-login/', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => {
+        throw err;
+      });
   };
 
   return (
@@ -32,7 +33,7 @@ const AdminLogin = () => {
           <input
             id="email"
             className="input"
-            type="text"
+            type="email"
             name="email"
             placeholder="Email"
             value={email}
@@ -59,7 +60,8 @@ const AdminLogin = () => {
         data-sitekey="6LclcGMiAAAAACcMErD4E5YdkngN-QSSHLSfS9Jr" 
         data-callback='onSubmit' 
         data-action='submit'
-        type="submit">Login</button>
+        type="submit">
+          Login</button>
       </form>
     </>
   );

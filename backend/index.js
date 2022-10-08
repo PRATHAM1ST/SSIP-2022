@@ -3,6 +3,8 @@ const cors = require("cors");
 const mysql = require("mysql");
 var bodyParser = require("body-parser");
 const port = "3001";
+const otpGenerator = require('otp-generator');
+const sha512 = require('sha512'); 
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -30,6 +32,65 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
+let otp;
+
+function saveOTP(given){
+  otp = given;
+}
+
+//listen mobile number
+app.post('/mobile', (req, res) => {
+  let mobile = req.body.mobile;
+  let err; 
+  try{
+    mobile = parseInt(mobile);
+    if((""+ mobile).length === 10){
+      let generatedOTP = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false })
+      saveOTP(generatedOTP);
+      res.send({OTP: generatedOTP});
+    }
+    else{
+      err = "Mobile number must have 10 number digits";
+    }
+  }
+  catch{
+    err = "Mobile number is not numeric";
+  }
+  res.send(err);
+})
+
+
+//check otp
+app.post('/check-otp', (req, res) => {
+  let otpReceived = req.body.otp;
+  let err; 
+  try{
+    otpReceived = parseInt(otpReceived);
+    console.log(otpReceived, otp, otpReceived == otp, (""+ otpReceived).length === 6);
+    if((""+ otpReceived).length === 6 && otpReceived ==  otp){
+      res.send(true);
+    }
+    else{
+      err = "otp number must have 6 number digits";
+    }
+  }
+  catch{
+    err = "otp number is not numeric";
+  }
+  res.status(400);
+  res.send(err);
+})
+
+//login check admin
+app.post('/admin-login', (req, res) => {
+  let sql = `SELECT * FROM officer WHERE email = ${req.body.email} AND password = ${sha512(req.body.password)} AND admin = 1`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+})
 
 
 // listen to port
@@ -39,6 +100,7 @@ app.listen(port, (err) => {
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "6LclcGMiAAAAABnAWnrQ0kLvwY-5HJTSQoLbK3Uy");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"

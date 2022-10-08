@@ -8,9 +8,24 @@ const UserOtp = () => {
 
   const handleMobileNo = (event) => {
     event.preventDefault();
-    setGotMobileNo(true);
-    fetch("http://127.0.0.1:8000")
-      .then((res) => {res.json(); console.log(res);})
+    if(mobile.length !== 10){
+      return
+    }
+    fetch("http://127.0.0.1:3001/mobile", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        mobile: mobile,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setGotMobileNo(true);
+        }
+      })
       .then((data) => console.log(data))
       .catch((err) => {
         throw err;
@@ -24,22 +39,46 @@ const UserOtp = () => {
 
   const handleResendOTP = (event) => {
     event.preventDefault();
-    // fetch()
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+    fetch("http://127.0.0.1:3001/mobile", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        mobile: mobile,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .then((data) => console.log(data))
+      .catch((err) => {
+        throw err;
+      });
   };
 
   const handleSubmitOTP = (event) => {
     event.preventDefault();
-    // fetch()
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+    fetch("http://127.0.0.1:3001/check-otp", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        otp: OTP,
+      }),
+    })
+      .then((res) => {
+        if(res.ok){
+          window.location.replace("/form")
+        }
+      })
+      .then((data) => console.log(data))
+      .catch((err) => {
+        throw err;
+      });
   };
 
   return (
@@ -56,12 +95,18 @@ const UserOtp = () => {
               <input
                 id="mob-no"
                 className="input"
-                type="number"
+                type="text"
                 name="mob-no"
                 placeholder="Mobile No"
-                maxLength="10"
                 value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
+                onChange={(e) => {
+                  if (
+                    e.target.value.length <= 10 &&
+                    /[0-9]/.test(e.target.value)
+                  ) {
+                    setMobile(e.target.value);
+                  }
+                }}
                 required
               />
             </div>
@@ -80,17 +125,21 @@ const UserOtp = () => {
             <div className="title">Enter OTP</div>
             <div className="label-input">
               <label htmlFor="otp" className="label">
-                Enter Otp sent on mobile no. 8200357641
+                Enter Otp sent on mobile no. {mobile}
               </label>
               <input
                 id="otp"
                 className="input"
-                type="number"
+                type="text"
                 name="otp"
                 placeholder="Enter OTP"
                 maxLength="6"
                 value={OTP}
-                onChange={(e) => setOTP(e.target.value)}
+                onChange={(e) => {
+                  if (e.target.value.length <= 6 && /[0-9]/.test(e.target.value)) {
+                    setOTP(e.target.value);
+                  }
+                }}
                 required
               />
             </div>
