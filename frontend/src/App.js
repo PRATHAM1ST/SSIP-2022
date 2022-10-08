@@ -9,6 +9,9 @@ import UserOtp from "./Pages/UserOtp";
 import Thankyou from "./Pages/Thankyou";
 import Dashboard from "./Pages/Dashboard";
 import QRGenerator from "./Pages/QRGenerator";
+import DashboardFeedback from "./Pages/DashboardFeedback";
+import ModifyStation from "./Pages/ModifyStation";
+import ModifyOfficer from "./Pages/ModifyOfficer";
 
 function useQuery() {
   const { search } = useLocation();
@@ -46,10 +49,10 @@ function App() {
           <Route path="/register" element={<AdminRegister />} />
           <Route path="/thanks" element={<Thankyou />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/feedback" element={<Dashboard />} />
+          <Route path="/dashboard/feedback" element={<DashboardFeedback />} />
           <Route path="/dashboard/qr" element={<QRGenerator />} />
-          <Route path="/dashboard/officer" element={<Dashboard />} />
-          <Route path="/dashboard/station" element={<Dashboard />} />
+          <Route path="/dashboard/officer" element={<ModifyOfficer />} />
+          <Route path="/dashboard/station" element={<ModifyStation />} />
         </Routes>
       )}
       {!localStorage.getItem("staion") && <NotScaned />}

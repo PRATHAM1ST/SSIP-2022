@@ -1,5 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { jsPDF } from "jspdf";
+
 const QRGenerator = () => {
+  const [station, setStation] = useState('');
   const canvasHTML = useRef(null);
   var QRCode = require("qrcode");
 
@@ -14,26 +17,37 @@ const QRGenerator = () => {
   }, []);
 
   const handlePng = () => {
-    QRCode.toFile("foo.png", [
-        { data: [253,254,255], mode: 'byte' },
-    ],()=>{}, err => {
-        if (err) throw err
-        console.log(`success`, '✓ Okay, Has successfully generate & save your qrcode.')
-       });
+    const canvas = document.getElementById("canvas");
+    const img = canvas.toDataURL("image/png");
+    document.getElementById("png").href = img;
   };
 
   const handlePdf = () => {
-    QRCode.toFile("foo.pdf", [
-      { data: new Uint8ClampedArray([253, 254, 255]), mode: "byte" },
-    ]);
+    const canvas = document.getElementById("canvas");
+    var imgData = canvas.toDataURL('image/png');
+    const doc = new jsPDF('p', 'mm');
+
+    doc.addImage(imgData, 'PNG', 10, 10);
+    doc.save("QR-CODE.pdf");
   };
 
   return (
     <>
-      <div className="fixedCenter">
+      <div className="fixedCenter container">
+        <div className="title"> Generate QRCode</div>
+        <div>
+          <label className="label" htmlFor="station">Station</label>
+          <input id="station" value={station} onChange={e=>setStation(e.target.value)} className="input" placeholder='Give the Station Name'/>
+        </div>
         <canvas id="canvas" ref={canvasHTML}></canvas>
-        <a onClick={handlePng} download>Download Png</a>
-        <a onClick={handlePdf} download>Download Pdf</a>
+        <div>
+          <a className="label" id="png" onClick={handlePng} download>
+            Download Png
+          </a><br/>
+          <a className="label" id="pdf" onClick={handlePdf} download>
+            Download Pdf
+          </a>
+        </div>
       </div>
     </>
   );
